@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Laptop Doktoru — Uzay Üssü Design System
+   ============================================================ */
+@theme {
+  /* Renk paleti */
+  --color-space: #0b0c10; /* Derin uzay siyahı */
+  --color-space-800: #12151c;
+  --color-panel: #1f2833; /* Koyu metalik gri */
+  --color-neon: #66fcf1; /* Neon mavi / plazma */
+  --color-plasma: #45a29e;
+  --color-silver: #c5c6c7; /* Parlak gümüş metin */
+
+  /* Tipografi */
+  --font-display: "Orbitron", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif;
+
+  /* Neon gölgeler */
+  --shadow-neon: 0 0 12px rgba(102, 252, 241, 0.45), 0 0 32px rgba(102, 252, 241, 0.2);
+  --shadow-neon-lg: 0 0 18px rgba(102, 252, 241, 0.6), 0 0 55px rgba(102, 252, 241, 0.3);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.55);
+
+  /* Yavaş dönüş (radar halkası) */
+  --animate-spin-slow: spin-slow 28s linear infinite;
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ------------------------------------------------------------------
+   Etkileşim taban katmanı:
+   Tailwind v4 preflight butonlara cursor: default verir; tüm tıklanabilir
+   öğelere pointer geri getirilir. Butonlar tıklanınca hafif küçülür.
+   ------------------------------------------------------------------ */
+@layer base {
+  button:not(:disabled),
+  [role='button'],
+  a {
+    cursor: pointer;
+  }
+
+  button {
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  button:not(:disabled):active {
+    transform: scale(0.95);
+  }
+}
+
+body {
+  background-color: var(--color-space);
+  color: var(--color-silver);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism panel */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* Neon metin parlaması */
+.text-glow {
+  text-shadow: 0 0 12px rgba(102, 252, 241, 0.55);
+}
+
+/* İnce neon kaydırma çubuğu */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2833;
+  border-radius: 8px;
+  border: 2px solid #0b0c10;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #45a29e;
+}
+
+::selection {
+  background: rgba(102, 252, 241, 0.3);
+  color: #ffffff;
+}
